@@ -2,18 +2,25 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install system dependencies for libreoffice/pdf tools if needed
-# build-essential is good for compiles
+# Install system dependencies for cv2 and pdf tools
 RUN apt-get update && apt-get install -y \
     build-essential \
-    && rm -rf /var/lib/apt/lists/*
+        libgl1-mesa-glx \
+            libglib2.0-0 \
+                libxcb1 \
+                    libxrender1 \
+                        libxext6 \
+                            libsm6 \
+                                libfontconfig1 \
+                                    && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+                                    COPY requirements.txt .
+                                    RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+                                    COPY . .
 
-ENV PORT=8000
-EXPOSE $PORT
+                                    ENV PORT=8000
+                                    EXPOSE $PORT
 
-CMD ["python", "app.py"]
+                                    CMD ["python", "app.py"]
+                                    
