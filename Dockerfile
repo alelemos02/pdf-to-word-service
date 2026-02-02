@@ -5,7 +5,7 @@ WORKDIR /app
 # Install system dependencies for cv2 and pdf tools
 RUN apt-get update && apt-get install -y \
     build-essential \
-        libgl1-mesa-glx \
+        libgl1 \
             libglib2.0-0 \
                 libxcb1 \
                     libxrender1 \
